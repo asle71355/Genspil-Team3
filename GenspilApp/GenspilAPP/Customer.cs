@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenspilApp
 {
-    class Customer
+    static class Customer
     {
-
+        public static void CreateCustomer()
+        {
+            Console.WriteLine("Customer");
+        }
     }
 }
