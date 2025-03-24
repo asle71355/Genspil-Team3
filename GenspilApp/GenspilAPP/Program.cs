@@ -1,4 +1,4 @@
-﻿namespace GenspilAPP
+﻿namespace GenspilApp
 {
     internal class Program
     {
