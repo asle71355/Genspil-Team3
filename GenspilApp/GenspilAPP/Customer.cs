@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenspilApp
 {
-    class Reservation
+    class Customer
     {
 
     }
