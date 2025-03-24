@@ -1,4 +1,6 @@
-﻿namespace GenspilApp
+﻿using System;
+
+namespace GenspilApp
 {
     internal class Program
     {
