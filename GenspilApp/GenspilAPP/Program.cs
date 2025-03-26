@@ -8,9 +8,15 @@ namespace GenspilApp
         {
             Console.WriteLine("Hello, World!");
 
+            //Reservation
             Reservation.MakeReservation();
-            Customer.CreateCustomer();
 
+            //Customer
+            Customer customer = new Customer();
+            customer.AddReservations();
+            customer.RemoveReservation();
+            customer.GetReservations();
+     
             Console.ReadLine();
         }
     }
