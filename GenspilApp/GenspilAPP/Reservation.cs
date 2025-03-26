@@ -1,12 +1,42 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace GenspilApp
 {
-    static class Reservation
+    class Reservation
     {
-        public static void MakeReservation()
+        private string comment;
+        //private List<Boardgame> boardgames = new List<Boardgame>();
+
+        //public Reservation(string comment, List<Boardgame> boardgames)
+        //{
+        //    this.comment = comment;
+        //    this.boardgames = boardgames;
+        //}
+
+        public string GetComment()
         {
-            Console.WriteLine("Reservation");
+            return comment;
         }
+
+        public void SetComment(string comment)
+        {
+            this.comment = comment;
+        }
+
+        //public List<Boardgame> GetBoardgames()
+        //{
+        //    return boardgames;
+        //}
+
+        //public void AddBoardgame(Boardgame boardgame)
+        //{
+
+        //}
+
+        //public void RemoveBoardgame()
+        //{
+
+        //}
     }
 }
