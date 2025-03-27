@@ -41,10 +41,7 @@ bV[2],
 .ToList();
             }
             }
-                
-        
 
-        
         //Properties
         public string Name
         {
