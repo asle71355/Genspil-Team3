@@ -14,30 +14,30 @@ namespace GenspilApp
     public class Boardgame
     {
         //Felter        
-        private string name;
-        private string players;
-        private List<Genre> genre = new();
-        private List<BoardgameVariant> boardgameVariants = new();
+        private string _name;
+        private string _players;
+        private List<Genre> _genre = new();
+        private List<BoardgameVariant> _boardgameVariants = new();
 
         
         //Konstruktør
         public Boardgame(string name, string players, List<Genre> genre)
         {
-            this.name = name;
-            this.players = players;
-            this.genre = genre;
+            this._name = name;
+            this._players = players;
+            this._genre = genre;
         }
 
         
         //Properties
         public string Name
         {
-            get { return name; }
+            get { return _name; }
             set
             {
                 if(!string.IsNullOrEmpty(value))
                 {
-                    name = value;
+                    _name = value;
                 }
                 else
                 {
@@ -47,12 +47,12 @@ namespace GenspilApp
         }
         public string Players
         {
-            get { return players; }
+            get { return _players; }
             set
             {
                 if (!string.IsNullOrEmpty(value) && int.TryParse(value, out int playerNumbers) && playerNumbers > 0)
                 {
-                    players = value;
+                    _players = value;
                 }
                 else
                 {
@@ -63,29 +63,29 @@ namespace GenspilApp
         }
         public List<Genre> Genre
         {
-            get { return genre; }
+            get { return _genre; }
             set
             {
                 if (value == null || value.Count == 0)
                 {
                     throw new ArgumentException("The game must have at least one genre..");
                 }
-                genre = value;
+                _genre = value;
             }
         }
         public List<BoardgameVariant> BoardgameVariant
         {
-            get { return boardgameVariants; }
+            get { return _boardgameVariants; }
         }
 
         //Metoder
         public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
         {
-            boardgameVariants.Add(boardgameVariant);
+            _boardgameVariants.Add(boardgameVariant);
         }
         public void RemoveBoardgameVariants(BoardgameVariant boardgameVariant)
         {
-            boardgameVariants.Remove(boardgameVariant);
+            _boardgameVariants.Remove(boardgameVariant);
         }
 
     }
