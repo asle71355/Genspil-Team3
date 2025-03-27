@@ -3,13 +3,14 @@ Velkommen til vores projekt.
 
 
 ### &emsp;1. Introduktion ###
-<sup>Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.</sup>
+&emsp; <sup>Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.</sup>
+</br>
 </br>
 
 ### &emsp;2. Funktioner ###
-* <sup>Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer</sup>
-* <sup>Tilføj eller slet brætspil</sup>
-* Se hvilke brætspilvarianter der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspilvarianter på tværs af genrer
+- <sup>Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer</sup>
+- <sup>Tilføj eller slet brætspil</sup>
+- Se hvilke brætspilvarianter der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspilvarianter på tværs af genrer
 * Tilføj eller slet brætspilvarianter
 * Se kunder
 * Opret eller slet kunder
