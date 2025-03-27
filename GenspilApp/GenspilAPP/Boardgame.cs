@@ -50,7 +50,7 @@ namespace GenspilApp
             get { return _players; }
             set
             {
-                if (!string.IsNullOrEmpty(value) && int.TryParse(value, out int playerNumbers) && playerNumbers > 0)
+                if (!string.IsNullOrEmpty(value))
                 {
                     _players = value;
                 }
@@ -82,6 +82,7 @@ namespace GenspilApp
         public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
         {
             _boardgameVariants.Add(boardgameVariant);
+            File.AppendAllText("{Name}.txt", boardgameVariant.Name);
         }
         public void RemoveBoardgameVariants(BoardgameVariant boardgameVariant)
         {
