@@ -63,7 +63,7 @@ namespace GenspilApp
 
         public string Print()
         {
-            return ("name: " + _name + " price: " + Price + " language: " + " status: " + _Status + " state: " + _State);
+            return ("name: " + _name + " price: " + Price + " language: " + " status: " + _Status + " state: " + _State;
         }
     }
 }
