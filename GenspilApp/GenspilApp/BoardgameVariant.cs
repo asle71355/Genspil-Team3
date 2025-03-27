@@ -55,5 +55,11 @@ namespace GenspilApp
             get { return _State; }
             set { _State = value; }
         }
+
+
+        public string Print()
+        {
+            return "name:"
+        }
     }
 }
