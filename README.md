@@ -1,4 +1,4 @@
-## &emsp;&emsp;&emsp;Projekt Genspil ##
+## Projekt Genspil ##
 Velkommen til vores projekt.
 
 
@@ -7,8 +7,8 @@ Velkommen til vores projekt.
 </br>
 
 ### &emsp;2. Funktioner ###
-<sup>* Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer
-* Tilføj eller slet brætspil
+* <sup>Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer</sup>
+* <sup>Tilføj eller slet brætspil</sup>
 * Se hvilke brætspilvarianter der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspilvarianter på tværs af genrer
 * Tilføj eller slet brætspilvarianter
 * Se kunder
@@ -26,4 +26,4 @@ Velkommen til vores projekt.
 * Når du er færdig, kan du lukke programmet ved at trykke ESC</sup>
 </br></br>
 
-#### &emsp;&emsp;&emsp;God fornøjelse! ####
+#### God fornøjelse! ####
