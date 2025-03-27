@@ -16,7 +16,7 @@ namespace GenspilApp
         //Felter        
         private string name;
         private string players;
-        private List<Genre> genre;
+        private List<Genre> genre = new();
         private List<BoardgameVariant> boardgameVariants = new();
 
         
@@ -25,7 +25,7 @@ namespace GenspilApp
         {
             this.name = name;
             this.players = players;
-            this.genre = new List<Genre>();
+            this.genre = genre;
         }
 
         
