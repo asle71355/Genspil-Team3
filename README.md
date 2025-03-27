@@ -1,5 +1,5 @@
 ## Projekt Genspil ##
-Velkommen til vores projekt.
+<p class="uppercase"><p style="font-family:comic-sans">Velkommen til vores projekt.</p></p>
 <br>
 
 ### Introduktion ###
