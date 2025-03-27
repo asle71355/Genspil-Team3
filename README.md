@@ -1,12 +1,12 @@
-## Projekt Genspil ##
-&emsp;Velkommen til vores projekt.
+## &emsp;&emsp;&emsp;Projekt Genspil ##
+Velkommen til vores projekt.
 
 
-### Introduktion ###
-Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.
-<br>
+### &emsp;&emsp;&emsp;Introduktion ###
+<sup>Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.</sup>
+</br>
 
-### Funktioner ###
+### &emsp;&emsp;&emsp;Funktioner ###
 * Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer
 * Tilføj eller slet brætspil
 * Se hvilke brætspilvarianter der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspilvarianter på tværs af genrer
@@ -15,16 +15,15 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 * Opret eller slet kunder
 * Ser reservationer
 * Opret eller slet reservationer
-<br>
+</br>
 
-### Hvordan bruger du den? ###
+### &emsp;&emsp;&emsp;Hvordan bruger du den? ###
 * Kør programmet i din foretrukne C# konsol
 * Vælg menupunkt fra programmet med piletasterne
 * Tryk Enter for at vælge menupunkt
 * Naviger undermenuerne med piletasterne og Enter for at vælge, og skriv eventuelt dit input
 * Du kan navigere tilbage til de forrige menuer med Retur/Backspace
 * Når du er færdig, kan du lukke programmet ved at trykke ESC
-<br>
-<br>
+</br></br>
 
 #### God fornøjelse! ####
