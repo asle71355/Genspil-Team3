@@ -1,8 +1,5 @@
 ## Projekt Genspil ##
-#### <sub>__Velkommen til vores projekt.__</sub> ####
-#### Hej ####
-<uppercase>Velkommen til vores projekt.</uppercase>
-<span style="text-transform:uppercase">Tjek og se om det virker</span>
+#### <sup>__Velkommen til vores projekt.__</sup> ####
 
 
 ### Introduktion ###
