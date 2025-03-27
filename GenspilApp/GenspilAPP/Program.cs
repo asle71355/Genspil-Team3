@@ -6,17 +6,8 @@ namespace GenspilApp
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello, World!");
+            MenuClass.Menu(MainMenu.menuOptions, MainMenu.DisplayMenu);
 
-            //Reservation
-            Reservation.MakeReservation();
-
-            //Customer
-            Customer customer = new Customer();
-            customer.AddReservations();
-            customer.RemoveReservation();
-            customer.GetReservations();
-     
             Console.ReadLine();
         }
     }
