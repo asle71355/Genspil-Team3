@@ -12,7 +12,7 @@ Velkommen til vores projekt.
 
 Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.
 
-</br></br>
+</br>
 
 <div id="toc">
   <ul style="list-style: none">
@@ -31,7 +31,7 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 * Ser reservationer
 * Opret eller slet reservationer
 
-</br></br>
+</br>
 
 <div id="toc">
   <ul style="list-style: none">
@@ -48,6 +48,6 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 * Du kan navigere tilbage til de forrige menuer med Retur/Backspace
 * Når du er færdig, kan du lukke programmet ved at trykke ESC
 
-</br></br>
+</br>
 
-#### &emsp;--->&emsp;&emsp;&emsp;God fornøjelse! ♟️🎲 ####
+#### &emsp;&emsp;⟶&emsp;God fornøjelse! ♟️🎲 ####
