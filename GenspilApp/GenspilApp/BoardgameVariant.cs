@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/*
+
 namespace GenspilApp
 {
-    enum state
+    public enum state
     {
         InStock, Reserved, UnderReapir, OutOfStock,
         Discontinued, PreOrder
     }
-    enum status
+    public enum status
     {
         Bad, Worn, LightlyUsed, Good,
         LikeNew, Unused
     }
-    internal class BoardgameVariant
+    public class BoardgameVariant
     {
         private string _name;
         private double _price;
@@ -33,5 +33,6 @@ namespace GenspilApp
             this._State = state;
         }
     }
+    
+
 }
-\*
