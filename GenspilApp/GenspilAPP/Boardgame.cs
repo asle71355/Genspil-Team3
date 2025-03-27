@@ -122,7 +122,6 @@ namespace GenspilApp
             foreach (BoardgameVariant variant in BoardgameVariant)
             {
                 Console.WriteLine(variant.Print());
-
             }
         }
 
