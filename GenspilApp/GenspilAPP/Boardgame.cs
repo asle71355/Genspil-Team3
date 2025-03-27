@@ -17,7 +17,7 @@ namespace GenspilApp
         private string name;
         private string players;
         private List<Genre> genre;
-        private List<BoardgameVariant> boardgameVariants;
+        private List<BoardgameVariant> boardgameVariants = new();
 
         
         //Konstruktør
@@ -73,7 +73,7 @@ namespace GenspilApp
                 genre = value;
             }
         }
-        public List<BoardgameVariant> boardgameVariant
+        public List<BoardgameVariant> BoardgameVariant
         {
             get { return boardgameVariants; }
         }
