@@ -29,7 +29,7 @@ namespace GenspilApp
                 if (string.IsNullOrWhiteSpace(name))
                 {
                     Console.WriteLine("Ugyldigt navn. Indtast navn: ");
-                    name = Console.ReadLine(); //Få nyt name fra user
+                    name = Console.ReadLine(); //Få nyt name fra useren
                     continue;
                 }
 
