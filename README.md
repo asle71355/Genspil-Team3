@@ -1,5 +1,5 @@
 ## Projekt Genspil ##
-#### <sub>Velkommen til vores projekt.</sub> ####
+#### <sub>_Velkommen til vores projekt._</sub> ####
 #### Hej####
 
 ### Introduktion ###
