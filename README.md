@@ -1,10 +1,18 @@
 ## Projekt Genspil ##
 Velkommen til vores projekt.
 </br>
+<div id="toc">
+  <ul style="list-style: none">
+    <summary>
+      <h1> Hey </h1>
+    </summary>
+  </ul>
+</div>
+
 
 ### &emsp;1. Introduktion ###
-&emsp;Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for &emsp;hvilken genre, og hvilken kunde har hvilken reservation.
-&emsp;</br></br>
+&nbsp;Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.
+</br></br>
 
 ### &emsp;2. Funktioner ###
 * Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer
