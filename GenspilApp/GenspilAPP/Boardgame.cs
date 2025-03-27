@@ -88,13 +88,13 @@ namespace GenspilApp
             _boardgameVariants.Add(boardgameVariant);
             File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
         }
-        public void RemoveBoardgameVariants(BoardgameVariant boardgameVariant)
+        public void RemoveBoardgameVariants(BoardgameVariant variantToDelete)
         {
-            _boardgameVariants.Remove(boardgameVariant);
+            _boardgameVariants.Remove(variantToDelete);
             File.WriteAllText($"{Name}.txt", "");
             foreach(BoardgameVariant game in _boardgameVariants)
             {
-                File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
+                File.AppendAllText($"{Name}.txt", game.Name + ";" + game.Price + ";" + game.Language + ";" + (int)game.Status + ";" + (int)game.State + "\n");
             }
 
         }
