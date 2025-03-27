@@ -1,7 +1,6 @@
 ## Projekt Genspil ##
-### <sub>Velkommen til vores projekt.</sub> ###
-
-<table>Hej</table>
+#### <sub>Velkommen til vores projekt.</sub> ####
+#### Hej####
 
 ### Introduktion ###
 Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.
