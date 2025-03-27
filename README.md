@@ -1,13 +1,6 @@
 # Projekt Genspil #
 Velkommen til vores projekt.
-</br>
-<div id="toc">
-  <ul style="list-style: none">
-    <summary>
-      <h2> Hey </h2>
-    </summary>
-  </ul>
-</div>
+
 
 <div id="toc">
   <ul style="list-style: none">
@@ -51,4 +44,4 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 * Når du er færdig, kan du lukke programmet ved at trykke ESC
 </br></br>
 
-### **God fornøjelse!** ###
+#### God fornøjelse! ♟️🎲 ####
