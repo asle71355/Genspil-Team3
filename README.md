@@ -21,7 +21,6 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
     </summary>
   </ul>
 </div>
-
 * Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer
 * Tilføj eller slet brætspil
 * Se hvilke brætspilvarianter der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspilvarianter på tværs af genrer
