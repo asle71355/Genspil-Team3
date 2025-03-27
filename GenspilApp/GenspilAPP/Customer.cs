@@ -29,7 +29,7 @@ namespace GenspilApp
                 if (string.IsNullOrWhiteSpace(name))
                 {
                     Console.WriteLine("Ugyldigt navn. Indtast navn: ");
-                    name = Console.ReadLine(); //Få nyt name fra useren
+                    name = Console.ReadLine(); //Få nyt name fra user
                     continue;
                 }
 
@@ -40,7 +40,6 @@ namespace GenspilApp
                     name = Console.ReadLine();
                     continue;
                 }
-
                 this.name = name;
                 break;
             }
@@ -52,7 +51,17 @@ namespace GenspilApp
         }
         public void SetTelephoneNum(int telephoneNum)
         {
-            this.telephoneNum = telephoneNum;
+            while (true)
+            {
+                if (telephoneNum.ToString().Length != 8)
+                {
+                    Console.WriteLine("Ugyldigt telefonnummer. Prøv igen: ");
+                    telephoneNum = Convert.ToInt32(Console.ReadLine()); //Få nyt nr. fra user
+                    continue;
+                }
+                this.telephoneNum = telephoneNum;
+                break;
+            }
         }
 
         public string GetAddress()
