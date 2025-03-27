@@ -50,4 +50,4 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 
 </br>
 
-#### &emsp;&emsp;♟️🎲 God fornøjelse! ####
+### &emsp;&emsp;♟️🎲 God fornøjelse! ###
