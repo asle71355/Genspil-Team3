@@ -28,7 +28,7 @@ namespace GenspilApp
         {
             this._name = name;
             this._players = players;
-            this._genre = genre;
+            this._genre = genr;
             LoadBoardgameVariants();
         }
 
@@ -124,6 +124,7 @@ namespace GenspilApp
             {
                 throw new Exception("Fandt ikke filen");
             }
+            Console.WriteLine("MetodeTest");
             return null;
         }
 
