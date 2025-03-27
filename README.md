@@ -1,6 +1,9 @@
 ## Projekt Genspil ##
-<p class="uppercase"><p style="font-family:comic-sans">Velkommen til vores projekt.</p></p>
-<br>
+p {
+  font-size: 14px;
+  class="uppercase";
+Velkommen til vores projekt.
+}
 
 ### Introduktion ###
 Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.
