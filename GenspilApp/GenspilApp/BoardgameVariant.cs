@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
 namespace GenspilApp
 {
-        enum state
+    enum state
     {
         InStock, Reserved, UnderReapir, OutOfStock,
         Discontinued, PreOrder
     }
-        enum status
+    enum status
     {
         Bad, Worn, LightlyUsed, Good,
         LikeNew, Unused
@@ -34,3 +34,4 @@ namespace GenspilApp
         }
     }
 }
+\*
