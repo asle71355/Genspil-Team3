@@ -63,7 +63,7 @@ namespace GenspilApp
 
         public string Print()
         {
-            return "name:"
+            return "name:";
         }
     }
 }
