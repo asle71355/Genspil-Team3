@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GenspilApp.Menu;
+using System;
 
 namespace GenspilApp
 {
@@ -6,6 +7,9 @@ namespace GenspilApp
     {
         static void Main(string[] args)
         {
+
+            MenuClass.Menu(MainMenu.menuOptions, MainMenu.DisplayMenu);
+
             Console.WriteLine("Hello, World!");
 
             //Reservation
