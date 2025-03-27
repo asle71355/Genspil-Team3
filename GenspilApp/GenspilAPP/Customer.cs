@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Channels;
 
 namespace GenspilApp
 {
@@ -8,13 +9,18 @@ namespace GenspilApp
         private string name;
         private int telephoneNum;
         private string address;
-        private List<string> reservations = new List<string>();
+        private List<Reservation> reservations = new List<Reservation>();
 
+        public Customer(string name, int telephoneNum, string address)
+        {
+            this.name = name;
+            this.telephoneNum = telephoneNum;
+            this.address = address;
+        }
         public string GetName()
         {
             return name;
         }
-
         public void SetName(string name)
         {
             this.name = name;
@@ -24,7 +30,6 @@ namespace GenspilApp
         {
             return telephoneNum;
         }
-
         public void SetTelephoneNum(int telephoneNum)
         {
             this.telephoneNum = telephoneNum;
@@ -34,29 +39,28 @@ namespace GenspilApp
         {
             return address;
         }
-
         public void SetAddress(string address)
         {
             this.address = address;
         }
 
-        public void AddReservations()
-        {
-            reservations.Add("reservation 1");
-            reservations.Add("reservation 2");
-            reservations.Add("reservation 3");
-        }
-        public void RemoveReservation()
-        {
-            reservations.Remove("reservation 2");
-        }
+        //public void AddReservation(Reservation reservation)
+        //{
+        //    Console.WriteLine("Tilføj reservation: ");
+        //    reservations.Add(reservation);
+        //}
+        //public void RemoveReservation()
+        //{
+        //    Console.WriteLine("Slet reservation: ");
+        //    reservations.Remove(Console.ReadLine());
+        //}
 
-        public void GetReservations()
-        {
-            foreach (string reservation in reservations)
-            {       
-            Console.WriteLine(reservation);
-            }
-        }
+        //public void GetReservations()
+        //{
+        //    foreach (var reservation in reservations)
+        //    {
+        //        Console.WriteLine(reservation);
+        //    }
+        //}
     }
 }
