@@ -9,6 +9,7 @@ Velkommen til vores projekt.
     </summary>
   </ul>
 </div>
+
 Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, kan du få et overblik over hvilket brætspil der er tilgængeligt, inden for hvilken genre, og hvilken kunde har hvilken reservation.
 </br></br>
 
@@ -19,6 +20,7 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
     </summary>
   </ul>
 </div>
+
 * Se hvilke brætspil der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspil på tværs af genrer
 * Tilføj eller slet brætspil
 * Se hvilke brætspilvarianter der er tilgængelige, sorteret efter navn eller genre, eller se en samlet liste over alle brætspilvarianter på tværs af genrer
@@ -27,7 +29,8 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 * Opret eller slet kunder
 * Ser reservationer
 * Opret eller slet reservationer
-</br>
+
+</br></br>
 
 <div id="toc">
   <ul style="list-style: none">
@@ -36,6 +39,7 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
     </summary>
   </ul>
 </div>
+
 * Kør programmet i din foretrukne C# konsol
 * Vælg menupunkt fra programmet med piletasterne
 * Tryk Enter for at vælge menupunkt
@@ -44,4 +48,4 @@ Det skal være nemt at finde ud af hvilket spil du vil købe. I dette program, k
 * Når du er færdig, kan du lukke programmet ved at trykke ESC
 </br></br>
 
-#### God fornøjelse! ♟️🎲 ####
+#### &emsp;&emsp;God fornøjelse! ♟️🎲 ####
