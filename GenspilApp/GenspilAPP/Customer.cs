@@ -44,23 +44,21 @@ namespace GenspilApp
             this.address = address;
         }
 
-        //public void AddReservation(Reservation reservation)
-        //{
-        //    Console.WriteLine("Tilføj reservation: ");
-        //    reservations.Add(reservation);
-        //}
-        //public void RemoveReservation()
-        //{
-        //    Console.WriteLine("Slet reservation: ");
-        //    reservations.Remove(Console.ReadLine());
-        //}
+        public void AddReservation(Reservation reservation)
+        {
+            reservations.Add(reservation);
+        }
+        public void RemoveReservation(Reservation reservation)
+        {
+            reservations.Remove(reservation);
+        }
 
-        //public void GetReservations()
-        //{
-        //    foreach (var reservation in reservations)
-        //    {
-        //        Console.WriteLine(reservation);
-        //    }
-        //}
+        public void GetReservations()
+        {
+            foreach (var reservation in reservations)
+            {
+                Console.WriteLine(reservation);
+            }
+        }
     }
 }
