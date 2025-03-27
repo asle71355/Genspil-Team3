@@ -83,7 +83,7 @@ namespace GenspilApp
         public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
         {
             _boardgameVariants.Add(boardgameVariant);
-            File.AppendAllText($"{Name}.txt", boardgameVariant.Print());
+            File.AppendAllText($"{Name}.txt", boardgameVariant.Print() + "\n");
         }
         public void RemoveBoardgameVariants(BoardgameVariant boardgameVariant)
         {
