@@ -23,7 +23,27 @@ namespace GenspilApp
         }
         public void SetName(string name)
         {
-            this.name = name;
+            while (true)
+            {
+                //Tjekker om name er ingenting eller kun mellemrum
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    Console.WriteLine("Ugyldigt navn. Indtast navn: ");
+                    name = Console.ReadLine(); //Få nyt name fra useren
+                    continue;
+                }
+
+                //Tjekker at alle characters kun er bogstaver og mellemrum
+                if (name.Any(c => !char.IsLetter(c) && c != ' '))
+                {
+                    Console.WriteLine("Ugyldigt navn. Indtast navn: ");
+                    name = Console.ReadLine();
+                    continue;
+                }
+
+                this.name = name;
+                break;
+            }
         }
 
         public int GetTelephoneNum()

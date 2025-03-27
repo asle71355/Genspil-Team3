@@ -6,13 +6,13 @@ namespace GenspilApp
     class Reservation
     {
         private string comment;
-        //private List<Boardgame> boardgames = new List<Boardgame>();
+        private List<Boardgame> boardgames = new List<Boardgame>();
 
-        //public Reservation(string comment, List<Boardgame> boardgames)
-        //{
-        //    this.comment = comment;
-        //    this.boardgames = boardgames;
-        //}
+        public Reservation(string comment, List<Boardgame> boardgames)
+        {
+            this.comment = comment;
+            this.boardgames = boardgames;
+        }
 
         public string GetComment()
         {
@@ -24,19 +24,19 @@ namespace GenspilApp
             this.comment = comment;
         }
 
-        //public List<Boardgame> GetBoardgames()
-        //{
-        //    return boardgames;
-        //}
+        public List<Boardgame> GetBoardgames()
+        {
+            return boardgames;
+        }
 
-        //public void AddBoardgame(Boardgame boardgame)
-        //{
+        public void AddBoardgame(Boardgame boardgame)
+        {
 
-        //}
+        }
 
-        //public void RemoveBoardgame()
-        //{
+        public void RemoveBoardgame()
+        {
 
-        //}
+        }
     }
 }

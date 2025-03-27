@@ -29,26 +29,7 @@ namespace GenspilApp
             this._name = name;
             this._players = players;
             this._genre = genre;
-            if (File.Exists($"{Name}.txt")){
-                BoardgameVariant = File.ReadAllLines($"{Name}.txt").Select(line => line.Split(";"))
-                .Select(bV => new BoardgameVariant(bV[0],double.Parse(bV[1]),bV[2],
-                (Status)Convert.ToInt32(bV[3]),(State)Convert.ToInt32(bV[4]))).ToList();
-            }
-            if (!File.Exists("Boardgame.txt"))
-            {
-                File.WriteAllText("Boardgame.txt", "");
-            }
-            string contents = File.ReadAllText("Boardgame.txt");
-            if (!contents.Contains(name))
-            {
-                File.AppendAllText("Boardgame.txt", Name + ";" + Players + ";" + string.Join(",", Genre) + "\n");
-            }
-            else
-            {
-                throw new ArgumentException("Den findes allerede");
-            }
-            
-
+            LoadBoardgameVariants();
         }
 
         //Properties
@@ -95,6 +76,25 @@ namespace GenspilApp
                 _genre = value;
             }
         }
+
+        public List<BoardgameVariant> LoadBoardgameVariants()
+        {
+            try
+            {
+                if (File.Exists($"{Name}.txt"))
+                {
+                    return BoardgameVariant = File.ReadAllLines($"{Name}.txt").Select(line => line.Split(";"))
+                    .Select(bV => new BoardgameVariant(bV[0], double.Parse(bV[1]), bV[2],
+                    (Status)Convert.ToInt32(bV[3]), (State)Convert.ToInt32(bV[4]))).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Fandt ikke filen");
+            }
+            return null;
+        }
+
         public List<BoardgameVariant> BoardgameVariant
         {
             get { return _boardgameVariants; }
@@ -117,6 +117,17 @@ namespace GenspilApp
             }
 
         }
+
+        public void AddBoardgameToFile(Boardgame boardgame)
+        {
+            if (!File.Exists("Boardgame.txt"))
+            {
+                File.WriteAllText("Boardgame.txt", "");
+            }
+
+            File.AppendAllText("Boardgame.txt", boardgame.Name + ";" + boardgame.Players + ";" + string.Join(",", boardgame.Genre.Select(g => ((int)g))) + "\n");
+        }
+
         public void PrintBoardGame()
         {
             foreach (BoardgameVariant variant in BoardgameVariant)
