@@ -30,21 +30,27 @@ namespace GenspilApp
             this._players = players;
             this._genre = genre;
             if (File.Exists($"{Name}.txt")){
-                BoardgameVariant = File.ReadAllLines($"{Name}.txt")
-.Select(line => line.Split(";"))
-.Select(bV => new BoardgameVariant(
-bV[0],
-double.Parse(bV[1]),
-bV[2],
-(Status)Convert.ToInt32(bV[3]),
-(State)Convert.ToInt32(bV[4])))
-.ToList();
+                BoardgameVariant = File.ReadAllLines($"{Name}.txt").Select(line => line.Split(";"))
+                .Select(bV => new BoardgameVariant(bV[0],double.Parse(bV[1]),bV[2],
+                (Status)Convert.ToInt32(bV[3]),(State)Convert.ToInt32(bV[4]))).ToList();
             }
+            if (!File.Exists("Boardgame.txt"))
+            {
+                File.WriteAllText("Boardgame.txt", "");
             }
-                
-        
+            string contents = File.ReadAllText("Boardgame.txt");
+            if (!contents.Contains(name))
+            {
+                File.AppendAllText("Boardgame.txt", Name + ";" + Players + ";" + string.Join(",", Genre) + "\n");
+            }
+            else
+            {
+                throw new ArgumentException("Den findes allerede");
+            }
+            
 
-        
+        }
+
         //Properties
         public string Name
         {
@@ -99,7 +105,7 @@ bV[2],
         public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
         {            
             _boardgameVariants.Add(boardgameVariant);
-            File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + boardgameVariant.Status + ";" + boardgameVariant.State + "\n");
+            File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
         }
         public void RemoveBoardgameVariants(BoardgameVariant boardgameVariant)
         {
@@ -107,7 +113,7 @@ bV[2],
             File.WriteAllText($"{Name}.txt", "");
             foreach(BoardgameVariant game in _boardgameVariants)
             {
-                File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + boardgameVariant.Status + ";" + boardgameVariant.State + "\n");
+                File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
             }
 
         }
