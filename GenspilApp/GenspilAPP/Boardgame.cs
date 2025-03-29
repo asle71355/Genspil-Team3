@@ -118,7 +118,7 @@ namespace GenspilApp
 
         }
 
-        public void AddBoardgameToFile(Boardgame boardgame)
+        public static void AddBoardgameToFile(Boardgame boardgame)
         {
             if (!File.Exists("Boardgame.txt"))
             {

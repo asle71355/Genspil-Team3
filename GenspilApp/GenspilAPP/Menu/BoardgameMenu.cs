@@ -12,10 +12,9 @@ namespace GenspilApp.Menu
         public static Dictionary<int, Action> menuOptions = new()
             {
                 {1, () => BoardgameSortedByName() },
-                {2, () => { }},
-                {3, () => AddBoardGame() },
+                {2, () => AddBoardGame() },
+                {3, () => { } },
                 {4, () => { } },
-                {5, () => { } },
             };
 
 
@@ -31,10 +30,9 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
 Vælg et menupunkt.
 [{(selectedOption == 1 ? "*" : " ")}]  Se brætspil sorteret efter navn
-[{(selectedOption == 2 ? "*" : " ")}]  Se brætspil sorteret efter genre
-[{(selectedOption == 3 ? "*" : " ")}]  Opret nyt brætspil
-[{(selectedOption == 4 ? "*" : " ")}]  Slet brætspil
-[{(selectedOption == 5 ? "*" : " ")}]  Udskriv liste af brætspil");
+[{(selectedOption == 2 ? "*" : " ")}]  Opret nyt brætspil
+[{(selectedOption == 3 ? "*" : " ")}]  Slet brætspil
+[{(selectedOption == 4 ? "*" : " ")}]  Udskriv liste af brætspil");
         }
 
         public static void AddBoardGame()
@@ -62,9 +60,7 @@ Opret nyt brætspil");
                     
                 else if (userInputGenre == "")
                 {
-                    Boardgame newGame = new Boardgame(name, players, genres);
-                    newGame.AddBoardgameToFile();
-                    
+                    Boardgame.AddBoardgameToFile(new Boardgame(name, players, genres));
                     MenuClass.Menu(MainMenu.menuOptions, MainMenu.DisplayMenu);
                 }
                 else
@@ -98,7 +94,10 @@ Opret nyt brætspil");
 Brug Esc til at lukke programmet.
 Brug Backspace til at gå tilbage til hovedmenuen.
             ");
-            foreach(Boardgame boardgame in boardgames)
+
+            var SortedBoardgame = boardgames.OrderBy(b => b.Name);
+
+            foreach(Boardgame boardgame in SortedBoardgame)
             {
                 Console.WriteLine($"Title: {boardgame.Name}; Antal spillere: {boardgame.Players}; Genrer: {string.Join(", ", boardgame.Genre)}");
             }
