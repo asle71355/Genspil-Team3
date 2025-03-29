@@ -44,7 +44,7 @@ namespace GenspilApp
                 }
                 else
                 {
-                    throw new ArgumentException("The field cannot be empty, please enter a name..");
+                    throw new ArgumentException("Feltet må ikke være tomt..");
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace GenspilApp
                 }
                 else
                 {
-                    throw new ArgumentException("The number of players must be greater than 0..");
+                    throw new ArgumentException("Der skal være mere end 0 spillere..");
                 }
 
             }
@@ -71,10 +71,42 @@ namespace GenspilApp
             {
                 if (value == null || value.Count == 0)
                 {
-                    throw new ArgumentException("The game must have at least one genre..");
+                    throw new ArgumentException("Spillet skal have mindst en genre..");
                 }
                 _genre = value;
             }
+        }        
+        public List<BoardgameVariant> BoardgameVariant
+        {
+            get { return _boardgameVariants; }
+            set { _boardgameVariants = value; }
+        }
+
+        //Metoder
+        public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
+        {            
+            _boardgameVariants.Add(boardgameVariant);
+            File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
+        }
+        public void RemoveBoardgameVariants(BoardgameVariant variantToDelete)
+        {
+            _boardgameVariants.Remove(variantToDelete);
+            File.WriteAllText($"{Name}.txt", "");
+            foreach(BoardgameVariant game in _boardgameVariants)
+            {
+                File.AppendAllText($"{Name}.txt", game.Name + ";" + game.Price + ";" + game.Language + ";" + (int)game.Status + ";" + (int)game.State + "\n");
+            }
+
+        }
+
+        public static void AddBoardgameToFile(Boardgame boardgame)
+        {
+            if (!File.Exists("Boardgame.txt"))
+            {
+                File.WriteAllText("Boardgame.txt", "");
+            }
+
+            File.AppendAllText("Boardgame.txt", boardgame.Name + ";" + boardgame.Players + ";" + string.Join(",", boardgame.Genre.Select(g => ((int)g))) + "\n");
         }
 
         public List<BoardgameVariant> LoadBoardgameVariants()
@@ -95,45 +127,11 @@ namespace GenspilApp
             return null;
         }
 
-        public List<BoardgameVariant> BoardgameVariant
-        {
-            get { return _boardgameVariants; }
-            set { _boardgameVariants = value; }
-        }
-
-        //Metoder
-        public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
-        {            
-            _boardgameVariants.Add(boardgameVariant);
-            File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
-        }
-        public void RemoveBoardgameVariants(BoardgameVariant boardgameVariant)
-        {
-            _boardgameVariants.Remove(boardgameVariant);
-            File.WriteAllText($"{Name}.txt", "");
-            foreach(BoardgameVariant game in _boardgameVariants)
-            {
-                File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
-            }
-
-        }
-
-        public static void AddBoardgameToFile(Boardgame boardgame)
-        {
-            if (!File.Exists("Boardgame.txt"))
-            {
-                File.WriteAllText("Boardgame.txt", "");
-            }
-
-            File.AppendAllText("Boardgame.txt", boardgame.Name + ";" + boardgame.Players + ";" + string.Join(",", boardgame.Genre.Select(g => ((int)g))) + "\n");
-        }
-
         public void PrintBoardGame()
         {
             foreach (BoardgameVariant variant in BoardgameVariant)
             {
                 Console.WriteLine(variant.Print());
-
             }
         }
 

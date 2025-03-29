@@ -31,17 +31,17 @@ namespace GenspilApp
             MenuClass.Menu(MainMenu.menuOptions, MainMenu.DisplayMenu);
 
             //Customer
-            Customer customer = new Customer("Name", 12345678, "Address");
+            //Customer customer = new Customer("Name", 12345678, "Address");
 
-            Console.Write("Indtast kundens navn: ");
-            string name = Console.ReadLine();
-            customer.SetName(name);
+            //Console.Write("Indtast kundens navn: ");
+            //string name = Console.ReadLine();
+            //customer.SetName(name);
 
-            Console.Write("Indtast telefonnummer: ");
-            int telephoneNum = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("Indtast telefonnummer: ");
+            //int telephoneNum = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Indtast kundens addresse: ");
-            string address = Console.ReadLine();
+            //Console.Write("Indtast kundens addresse: ");
+            //string address = Console.ReadLine();
 
 
             Console.ReadLine();
