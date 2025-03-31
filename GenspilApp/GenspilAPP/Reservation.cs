@@ -31,12 +31,12 @@ namespace GenspilApp
 
         public void AddBoardgame(Boardgame boardgame)
         {
-
+            boardgames.Add(boardgame);
         }
 
-        public void RemoveBoardgame()
+        public void RemoveBoardgame(Boardgame boardgame)
         {
-
+            boardgames.Remove(boardgame);
         }
     }
 }
