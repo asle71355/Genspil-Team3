@@ -28,7 +28,13 @@ namespace GenspilApp
             myGame.AddBoardgameVariants(new BoardgameVariant(navn, pris, "Dansk", Status.Good, State.InStock));
             */
 
-            MenuClass.Menu(MainMenu.menuOptions, MainMenu.DisplayMenu);
+
+            Storage.Storage.LoadBoardgameFile();
+            Storage.Storage.CreateBoardgamesDictionary();
+            Storage.Storage.CreateEnumDictionary<Genre>(Storage.Storage.GenreDict);
+            Storage.Storage.CreateEnumDictionary<Status>(Storage.Storage.StatusDict);
+            Storage.Storage.CreateEnumDictionary<State>(Storage.Storage.StateDict);
+            MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
             //Customer
             //Customer customer = new Customer("Name", 12345678, "Address");

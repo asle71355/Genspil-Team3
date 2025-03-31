@@ -8,26 +8,11 @@ namespace GenspilApp.Menu
 {
     public class ReservationMenu
     {
-        public static Dictionary<int, Action> menuOptions = new()
+        public static Dictionary<int, (Action, string)> menuOptions = new()
             {
-                {1, () => { } },
-                {2, () => { } },
-                { 3, () => {} },
+                {1, (() => { }, "Se reservationer") },
+                {2, (() => { }, "Opret ny reservationer") },
+                { 3, (() => {}, "Slet reservationer") },
             };
-
-        public static void DisplayMenu(int selectedOption)
-        {
-            Console.Clear();
-            Console.WriteLine($@"---Genspil---
-Menu
-Brug piletasterne og Enter til at vælge et menupunkt.
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-Vælg et menupunkt.
-[{(selectedOption == 1 ? "*" : " ")}]  Se reservationer
-[{(selectedOption == 2 ? "*" : " ")}]  Opret ny reservationer
-[{(selectedOption == 3 ? "*" : " ")}]  Slet reservationer");
-        }
     }
 }
