@@ -83,18 +83,18 @@ namespace GenspilApp
         }
 
         //Metoder
-        public void AddBoardgameVariants(BoardgameVariant boardgameVariant)
+        public void AddBoardgameVariants(BoardgameVariant newVariant)
         {            
-            _boardgameVariants.Add(boardgameVariant);
-            File.AppendAllText($"{Name}.txt", boardgameVariant.Name + ";" + boardgameVariant.Price + ";" + boardgameVariant.Language + ";" + (int)boardgameVariant.Status + ";" + (int)boardgameVariant.State + "\n");
+            _boardgameVariants.Add(newVariant);
+            File.AppendAllText($"{Name.ToLower()}.txt", newVariant.Name + ";" + newVariant.Price + ";" + newVariant.Language + ";" + (int)newVariant.Status + ";" + (int)newVariant.State + "\n");
         }
         public void RemoveBoardgameVariants(BoardgameVariant variantToDelete)
         {
             _boardgameVariants.Remove(variantToDelete);
-            File.WriteAllText($"{Name}.txt", "");
+            File.WriteAllText($"{Name.ToLower()}.txt", "");
             foreach(BoardgameVariant game in _boardgameVariants)
             {
-                File.AppendAllText($"{Name}.txt", game.Name + ";" + game.Price + ";" + game.Language + ";" + (int)game.Status + ";" + (int)game.State + "\n");
+                File.AppendAllText($"{Name.ToLower()}.txt", game.Name + ";" + game.Price + ";" + game.Language + ";" + (int)game.Status + ";" + (int)game.State + "\n");
             }
 
         }
