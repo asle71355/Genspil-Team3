@@ -49,7 +49,7 @@ Vælg Brætspil: ");
 
             Boardgame foundGame = Storage.Storage.boardgames.FirstOrDefault(bg => bg.Name == boardgame);
 
-            foundGame.AddBoardgameVariants(new BoardgameVariant(boardgame, price, language, status, state));
+            foundGame.AddBoardgameVariants(new BoardgameVariant(boardgame, price, language, state, status));
 
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
             }
