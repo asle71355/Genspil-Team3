@@ -34,8 +34,9 @@ namespace GenspilApp.Storage
                 .ToList()
                 ))
                 .ToList();
+                CreateBoardgamesDictionary();
             }
-            CreateBoardgamesDictionary();
+            
         }
 
         public static void CreateBoardgamesDictionary()
