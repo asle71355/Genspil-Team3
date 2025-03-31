@@ -25,15 +25,15 @@ namespace GenspilApp
             Console.WriteLine("Hvad er prisen");
             double pris = Convert.ToDouble(Console.ReadLine());
             
-            myGame.AddBoardgameVariants(new BoardgameVariant(navn, pris, "Dansk", Status.Good, State.InStock));
+            myGame.AddBoardgameVariants(new BoardgameVariant(navn, pris, "Dansk", State.Good, Status.InStock));
             */
 
 
             Storage.Storage.LoadBoardgameFile();
             Storage.Storage.CreateBoardgamesDictionary();
             Storage.Storage.CreateEnumDictionary<Genre>(Storage.Storage.GenreDict);
-            Storage.Storage.CreateEnumDictionary<Status>(Storage.Storage.StatusDict);
-            Storage.Storage.CreateEnumDictionary<State>(Storage.Storage.StateDict);
+            Storage.Storage.CreateEnumDictionary<State>(Storage.Storage.StatusDict);
+            Storage.Storage.CreateEnumDictionary<Status>(Storage.Storage.StateDict);
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
             //Customer

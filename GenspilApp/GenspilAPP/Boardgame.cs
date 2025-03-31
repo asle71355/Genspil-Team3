@@ -117,7 +117,7 @@ namespace GenspilApp
                 {
                     return BoardgameVariant = File.ReadAllLines($"{Name}.txt").Select(line => line.Split(";"))
                     .Select(bV => new BoardgameVariant(bV[0], double.Parse(bV[1]), bV[2],
-                    (Status)Convert.ToInt32(bV[3]), (State)Convert.ToInt32(bV[4]))).ToList();
+                    (State)Convert.ToInt32(bV[3]), (Status)Convert.ToInt32(bV[4]))).ToList();
                 }
             }
             catch (Exception ex)
