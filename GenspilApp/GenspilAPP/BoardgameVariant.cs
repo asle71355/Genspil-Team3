@@ -21,16 +21,16 @@ namespace GenspilApp
         private string _name;
         private double _price;
         private string _language;
-        private State _Status;
-        private Status _State;
+        private State _state;
+        private Status _status;
 
-        public BoardgameVariant(string name, double price, string language, State status, Status state)
+        public BoardgameVariant(string name, double price, string language, State state, Status status)
         {
             this._name = name;
             this._price = price;
             this._language = language;
-            this._Status = status;
-            this._State = state;
+            this._state = state;
+            this._status = status;
         }
 
         public string Name
@@ -50,20 +50,20 @@ namespace GenspilApp
             set { _language = value; }
         }
         public State Status 
-        { get { return _Status; } 
-          set {  this._Status = value; }
+        { get { return _state; } 
+          set {  this._state = value; }
         } 
 
         public Status State
         {
-            get { return _State; }
-            set { _State = value; }
+            get { return _status; }
+            set { _status = value; }
         }
 
 
         public string Print()
         {
-            return ("name: " + _name + " price: " + _price + " language: " + _language + " status: " + _Status + " state: " + _State);
+            return ("name: " + _name + " price: " + _price + " language: " + _language + " state: " + _state + " status: " + _status);
         }
     }
 }
