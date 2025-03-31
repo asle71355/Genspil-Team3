@@ -43,11 +43,16 @@ namespace GenspilApp.Storage
         {
             boardgamesDict = new Dictionary<int, string>();
             int counter = 1;
-            foreach (Boardgame game in boardgames)
+            
+            if(boardgames != null)
             {
-                boardgamesDict.Add(counter, game.Name);
-                counter++;
+                foreach (Boardgame game in boardgames)
+                {
+                    boardgamesDict.Add(counter, game.Name);
+                    counter++;
+                }
             }
+
         }
 
         public static void Removeboardgame(Boardgame boardgameToRemove)
