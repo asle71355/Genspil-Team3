@@ -4,7 +4,7 @@ using System.Threading.Channels;
 
 namespace GenspilApp
 {
-    class Customer
+    public class Customer
     {
         private string name;
         private int telephoneNum;
@@ -88,6 +88,15 @@ namespace GenspilApp
             {
                 Console.WriteLine(reservation);
             }
+        }
+        public static void AddCustomerToFile(Customer customer)
+        {
+            if (!File.Exists("Customer.txt"))
+            {
+                File.WriteAllText("Customer.txt", "");
+            }
+
+            File.AppendAllText("Customer.txt", customer.name + ";" + customer.telephoneNum + ";" + customer.address + "\n");
         }
     }
 }

@@ -12,10 +12,9 @@ namespace GenspilApp.Menu
     {
         public static Dictionary<int, (Action, string)> menuOptions = new()
             {
-                {1, (() => BoardgameSortedByName(), "Se brætspil sorteret efter navn") },
-                {2, (() => AddBoardgame(), "Opret nyt brætspil") },
-                {3, (() => RemoveBoardgame(), "Slet brætspil") },
-                {4, (() => { }, "Udskriv liste af brætspil") },
+                {1, (BoardgameSortedByName, "Se brætspil sorteret efter navn") },
+                {2, (AddBoardgame, "Opret nyt brætspil") },
+                {3, (RemoveBoardgame, "Slet brætspil") }
             };
 
         public static void AddBoardgame()
@@ -71,12 +70,21 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
             ");
 
-            var SortedBoardgame = Storage.Storage.boardgames.OrderBy(b => b.Name);
-
-            foreach (Boardgame boardgame in SortedBoardgame)
+            if (Storage.Storage.boardgames.Count != 0)
             {
-                Console.WriteLine($"Title: {boardgame.Name}; Antal spillere: {boardgame.Players}; Genrer: {string.Join(", ", boardgame.Genre)}");
+                var SortedBoardgame = Storage.Storage.boardgames.OrderBy(b => b.Name);
+
+                foreach (Boardgame boardgame in SortedBoardgame)
+                {
+                    Console.WriteLine($"Title: {boardgame.Name}; Antal spillere: {boardgame.Players}; Genrer: {string.Join(", ", boardgame.Genre)}");
+                }
             }
+
+            else
+            {
+                Console.WriteLine("Listen er tom.");
+            }
+
         }
 
         public static void RemoveBoardgame()

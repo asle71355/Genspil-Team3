@@ -10,9 +10,9 @@ namespace GenspilApp.Menu
     {
         public static Dictionary<int, (Action, string)> menuOptions = new()
             {
-                {1, (() => CustomerSortedByName(), "Se kunder")},
-                {2, (() => AddCustomer(), "Opret ny kunde")},
-                { 3, (() => RemoveCustomer(), "Slet kunde") },
+                {1, (CustomerSortedByName, "Se kunder")},
+                {2, (AddCustomer, "Opret ny kunde")},
+                { 3, (RemoveCustomer, "Slet kunde") },
             };
 
         public static void AddCustomer()
@@ -27,8 +27,16 @@ Kundens navn: ");
             MenuClass.Log(log, name, false);
 
             MenuClass.Log(log, "Kundens telefon nummer: ");
-            string telNum = Console.ReadLine();
-            MenuClass.Log(log, telNum, false);
+            int telNum = Convert.ToInt32(Console.ReadLine());
+            MenuClass.Log(log, telNum.ToString(), false);
+
+            MenuClass.Log(log, "Kundens adresse: ");
+            string adress = Console.ReadLine();
+            MenuClass.Log(log, adress, false);
+
+            Customer.AddCustomerToFile(new Customer(name, telNum, adress));
+            Storage.Storage.LoadCustomerFile();
+            MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }
 
@@ -45,35 +53,35 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
             ");
 
-            var SortedBoardgame = Storage.Storage.boardgames.OrderBy(b => b.Name);
+            var sortedCustomer = Storage.Storage.customers.OrderBy(b => b.GetName());
 
-            foreach (Boardgame boardgame in SortedBoardgame)
+            foreach (Customer customer in sortedCustomer)
             {
-                Console.WriteLine($"Title: {boardgame.Name}; Antal spillere: {boardgame.Players}; Genrer: {string.Join(", ", boardgame.Genre)}");
+                Console.WriteLine($"Navn: {customer.GetName()}; Telefonnr.: {customer.GetTelephoneNum()}; Adresse:{customer.GetAddress()}");
             }
         }
 
         public static void RemoveCustomer()
         {
             StringBuilder log = new();
-            Dictionary<int, string> removeBoardgameMenuOptions = Storage.Storage.boardgamesDict;
+            Dictionary<int, (string, int)> removeCustomerMenuOptions = Storage.Storage.customersDict;
             int counter = 1;
 
             Console.Clear();
             MenuClass.Log(log, $@"---Genspil---
-Slet brætspil
+Slet kunde
 Brug piletasterne og Enter til at vælge et menupunkt.
 Brug Esc til at lukke programmet.
 Brug Backspace til at gå tilbage til hovedmenuen.
 
-Vælg et brætspil der skal sletters.
+Vælg en kunde der skal slettes.
 ");
 
-            string name = MenuClass.MenuItems(removeBoardgameMenuOptions, log, 1);
+            string name = MenuClass.MenuItems(removeCustomerMenuOptions, log, 1);
 
-            Boardgame boardgameToBeRemoved = Storage.Storage.boardgames.Find(b => b.Name == name);
+            Customer customerToBeRemoved = Storage.Storage.customers.Find(b => b.GetName() == name);
 
-            Storage.Storage.Removeboardgame(boardgameToBeRemoved);
+            Storage.Storage.RemoveCustomer(customerToBeRemoved);
 
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 

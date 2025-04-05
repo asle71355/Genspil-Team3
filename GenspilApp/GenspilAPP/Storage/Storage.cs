@@ -17,6 +17,8 @@ namespace GenspilApp.Storage
         public static Dictionary<int, string> GenreDict { get; set; } = new();
         public static Dictionary<int, string> StatusDict { get; set; } = new();
         public static Dictionary<int, string> StateDict { get; set; } = new();
+        public static List<Customer> customers { get; set; } = new();
+        public static Dictionary<int, (string, int)> customersDict { get; set; } = new();
 
         public static void LoadBoardgameFile()
         {
@@ -76,6 +78,51 @@ namespace GenspilApp.Storage
                 enumDict.Add(counter, singleEnum.ToString());
                 counter++;
             }
+        }
+
+        public static void LoadCustomerFile()
+        {
+            customers = null;
+            if (File.Exists($"Customer.txt"))
+            {
+                customers = File.ReadAllLines($"Customer.txt")
+                .Select(line => line.Split(";"))
+                .Select(bV => new Customer(
+                bV[0],
+                Convert.ToInt32(bV[1]),
+                bV[2]))
+                .ToList();
+                CreateCustomersDictionary();
+            }
+
+        }
+
+        public static void CreateCustomersDictionary()
+        {
+            customersDict = new Dictionary<int, (string, int)>();
+            int counter = 1;
+
+            if (customers != null)
+            {
+                foreach (Customer customer in customers)
+                {
+                    customersDict.Add(counter, (customer.GetName(), customer.GetTelephoneNum()));
+                    counter++;
+                }
+            }
+
+        }
+
+        public static void RemoveCustomer(Customer customerToRemove)
+        {
+            customers.Remove(customerToRemove);
+
+            File.WriteAllText($"Customer.txt", "");
+            foreach (Customer customer in customers)
+            {
+                File.AppendAllText("Customer.txt", customer.GetName() + ";" + customer.GetTelephoneNum() + ";" + customer.GetAddress() + "\n");
+            }
+            LoadCustomerFile();
         }
     }
 }

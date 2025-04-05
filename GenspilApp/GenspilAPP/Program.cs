@@ -31,6 +31,8 @@ namespace GenspilApp
 
             Storage.Storage.LoadBoardgameFile();
             Storage.Storage.CreateBoardgamesDictionary();
+            Storage.Storage.LoadCustomerFile();
+            Storage.Storage.CreateCustomersDictionary();
             Storage.Storage.CreateEnumDictionary<Genre>(Storage.Storage.GenreDict);
             Storage.Storage.CreateEnumDictionary<State>(Storage.Storage.StatusDict);
             Storage.Storage.CreateEnumDictionary<Status>(Storage.Storage.StateDict);

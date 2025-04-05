@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace GenspilApp
 {
-    class Reservation
+    public class Reservation
     {
         private string comment;
         private List<Boardgame> boardgames = new List<Boardgame>();

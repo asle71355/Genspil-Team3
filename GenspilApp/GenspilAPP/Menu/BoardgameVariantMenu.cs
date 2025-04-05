@@ -12,10 +12,9 @@ namespace GenspilApp.Menu
     {
        public static Dictionary<int, (Action, string)> menuOptions = new()
             {
-                {1, (() => BoardgameVariantSortedByName(), "Se brætspil varianter sorteret efter navn")},
-                {2, (() => AddBoardgameVariant(), "Opret nyt brætspil variant") },
-                {3, (() => RemoveBoardgameVariant(), "Slet brætspil variant") },
-                {4, (() => { }, "Udskriv liste af brætspil variant") }
+                {1, (BoardgameVariantSortedByName, "Se brætspil varianter sorteret efter navn")},
+                {2, (AddBoardgameVariant, "Opret nyt brætspil variant") },
+                {3, (RemoveBoardgameVariant, "Slet brætspil variant") }
             };
         public static void AddBoardgameVariant()
         {
@@ -108,9 +107,9 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
             ");
 
-            Dictionary<int, string> SeeBoardgameVariantMenuOptions = Storage.Storage.boardgamesDict;
+            Dictionary<int, string> chooseBoardgameMenuOptions = Storage.Storage.boardgamesDict;
 
-            string boardgame = MenuClass.MenuItems(SeeBoardgameVariantMenuOptions, log, 1);
+            string boardgame = MenuClass.MenuItems(chooseBoardgameMenuOptions, log, 1);
             Boardgame foundGame = Storage.Storage.boardgames.FirstOrDefault(bg => bg.Name == boardgame);
             int counter = 1;
 

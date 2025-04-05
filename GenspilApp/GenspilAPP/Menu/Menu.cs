@@ -110,6 +110,53 @@ Vælg et menupunkt.");
 
         }
 
+        public static string MenuItems(Dictionary<int, (string, int)> menuItemsOptions, StringBuilder log, int selectedOption)
+        {
+            //Eksevere display menu funktion med menuOptions som parameter
+            Console.Clear();
+            Console.WriteLine(log);
+
+            foreach (var item in menuItemsOptions)
+            {
+                Console.WriteLine($"[{(selectedOption == item.Key ? ">" : " ")}] {item.Value.Item1}, Tlfnr.: {item.Value.Item2}");
+            }
+
+            //Opretter et ConsoleKey objekt med navn pressedKey
+            ConsoleKeyInfo pressedKey;
+
+            pressedKey = Console.ReadKey();
+
+            if (pressedKey.Key == ConsoleKey.Escape)
+            {
+                Environment.Exit(0);
+            }
+
+            if (pressedKey.Key == ConsoleKey.DownArrow && selectedOption < menuItemsOptions.Count)
+            {
+                return MenuItems(menuItemsOptions, log, ++selectedOption);
+
+            }
+
+            if (pressedKey.Key == ConsoleKey.UpArrow && selectedOption > 1)
+            {
+                return MenuItems(menuItemsOptions, log, --selectedOption);
+            }
+
+            if (pressedKey.Key == ConsoleKey.Backspace)
+            {
+                MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
+                return null;
+            }
+
+            if (pressedKey.Key == ConsoleKey.Enter)
+            {
+                return menuItemsOptions[selectedOption].Item1;
+            }
+
+            return MenuItems(menuItemsOptions, log, selectedOption);
+
+        }
+
         public static List<string> MenuMultipleItems(Dictionary<int, string> menuItemsOptions, List<string> list, string title, StringBuilder log, int selectedOption)
         {
             Console.Clear();
