@@ -84,12 +84,9 @@ namespace GenspilApp
             reservations.Remove(reservation);
         }
 
-        public void GetReservations()
+        public List<Reservation> GetReservations()
         {
-            foreach (var reservation in reservations)
-            {
-                Console.WriteLine(reservation);
-            }
+            return reservations;
         }
         public static void AddCustomerToFile(Customer customer)
         {

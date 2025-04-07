@@ -24,7 +24,7 @@ namespace GenspilApp
             this.comment = comment;
         }
 
-        public List<Boardgame> GetReservations()
+        public List<Boardgame> GetBoardgames()
         {
             return boardgames;
         }
