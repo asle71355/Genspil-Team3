@@ -77,9 +77,9 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 Vælg en kunde der skal slettes.
 ");
 
-            string name = MenuClass.MenuItems(removeCustomerMenuOptions, log, 1);
+            int? customerTelNum = MenuClass.MenuItems(removeCustomerMenuOptions, log, 1, "Tlf nr.");
 
-            Customer customerToBeRemoved = Storage.Storage.customers.Find(b => b.GetName() == name);
+            Customer customerToBeRemoved = Storage.Storage.customers.Find(c => c.GetTelephoneNum() == customerTelNum);
 
             Storage.Storage.RemoveCustomer(customerToBeRemoved);
 

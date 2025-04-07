@@ -17,6 +17,7 @@ namespace GenspilApp
             this.name = name;
             this.telephoneNum = telephoneNum;
             this.address = address;
+            LoadReservations();
         }
         public string GetName()
         {
@@ -77,17 +78,23 @@ namespace GenspilApp
         public void AddReservation(Reservation reservation)
         {
             reservations.Add(reservation);
-            File.AppendAllText($"{telephoneNum}.txt", string.Join(";", reservations.Select(r => $"{r.GetComment()};{string.Join(",", r.GetBoardgames().Select(b => b.Name))}")) + "\n");
+            File.AppendAllText($"{telephoneNum}.txt", $"{reservation.GetComment()};{string.Join(",", reservation.GetBoardgames().Select(b => b.Name))}" + "\n");
         }
-        public void RemoveReservation(Reservation reservation)
+        public void RemoveReservation(Reservation reservationToBeRemoved)
         {
-            reservations.Remove(reservation);
+            reservations.Remove(reservationToBeRemoved);
+            File.WriteAllText($"{telephoneNum}.txt", "");
+            foreach (Reservation reservation in reservations)
+            {
+                File.AppendAllText($"{telephoneNum}.txt", $"{reservation.GetComment()};{string.Join(",", reservation.GetBoardgames().Select(b => b.Name))}" + "\n");
+            }
         }
 
         public List<Reservation> GetReservations()
         {
             return reservations;
         }
+
         public static void AddCustomerToFile(Customer customer)
         {
             if (!File.Exists("Customer.txt"))
@@ -97,5 +104,35 @@ namespace GenspilApp
 
             File.AppendAllText("Customer.txt", customer.name + ";" + customer.telephoneNum + ";" + customer.address + "\n");
         }
+
+        public List<Reservation> LoadReservations()
+        {
+            try
+            {
+                if (File.Exists($"{telephoneNum}.txt"))
+                {
+                    var reservationsFromFile = File.ReadAllLines($"{telephoneNum}.txt");
+
+                    foreach(var line in reservationsFromFile)
+                    {
+                        var r = line.Split(";");
+                        var comment = r[0];
+                        var boardgameNames = r[1].Split(",");
+
+                        var foundBoardgames = boardgameNames
+                        .Select(name => Storage.Storage.boardgames.FirstOrDefault(bG => bG.Name == name))
+                        .ToList();
+
+                        reservations.Add(new Reservation(comment, foundBoardgames));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Filen kunne ikke findes..");
+            }
+            return null;
+        }
+
     }
 }

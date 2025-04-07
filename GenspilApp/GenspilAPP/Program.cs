@@ -34,9 +34,11 @@ namespace GenspilApp
             Storage.Storage.LoadCustomerFile();
             Storage.Storage.CreateCustomersDictionary();
             Storage.Storage.CreateEnumDictionary<Genre>(Storage.Storage.GenreDict);
-            Storage.Storage.CreateEnumDictionary<State>(Storage.Storage.StatusDict);
-            Storage.Storage.CreateEnumDictionary<Status>(Storage.Storage.StateDict);
+            Storage.Storage.CreateEnumDictionary<Status>(Storage.Storage.StatusDict);
+            Storage.Storage.CreateEnumDictionary<State>(Storage.Storage.StateDict);
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
+
+
 
             //Customer
             //Customer customer = new Customer("Name", 12345678, "Address");

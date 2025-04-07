@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace GenspilApp.Menu
 {
@@ -26,8 +27,8 @@ Vælg kunde: ");
 
             Dictionary<int, (string, int)> AddReservationMenuOptions = Storage.Storage.customersDict;
 
-            string customerName = MenuClass.MenuItems(AddReservationMenuOptions, log, 1);
-            MenuClass.Log(log, customerName, false);
+            int? customerTelNum = MenuClass.MenuItems(AddReservationMenuOptions, log, 1, "Tlf nr.");
+            MenuClass.Log(log, customerTelNum.ToString(), false);
 
             Console.Clear();
             Console.WriteLine(log);
@@ -38,7 +39,7 @@ Vælg kunde: ");
             string comment = Console.ReadLine();
             MenuClass.Log(log, comment, false);
 
-            Customer foundCustomer = Storage.Storage.customers.FirstOrDefault(c => c.GetName() == customerName);
+            Customer foundCustomer = Storage.Storage.customers.FirstOrDefault(c => c.GetTelephoneNum() == customerTelNum);
 
             List<Boardgame> foundGames = new();
 
@@ -72,16 +73,37 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
             Dictionary<int, (string, int)> SeeReservationMenuOptions = Storage.Storage.customersDict;
 
-            string customerName = MenuClass.MenuItems(SeeReservationMenuOptions, log, 1);
-            Customer foundCustomer = Storage.Storage.customers.FirstOrDefault(c => c.GetName() == customerName);
+            int? customerTelNum = MenuClass.MenuItems(SeeReservationMenuOptions, log, 1, "Tlf nr.");
+            Customer foundCustomer = Storage.Storage.customers.FirstOrDefault(c => c.GetTelephoneNum() == customerTelNum);
 
-            foundCustomer.GetReservations();
+            if (foundCustomer.GetReservations().Count != 0)
+            {
+                int counter = 1;
+
+                foreach (Reservation reservation in foundCustomer.GetReservations())
+                {
+                    Console.WriteLine(@$"-------------
+Reservation {counter}
+Kommentar: {reservation.GetComment()};");
+                    foreach(Boardgame boardgame in reservation.GetBoardgames())
+                    {
+                        Console.WriteLine(boardgame.Name);
+                    }
+                    counter++;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Listen er tom.");
+            }
 
         }
 
         public static void RemoveReservation()
         {
-            /*
+
+            
             Console.Clear();
 
             StringBuilder log = new();
@@ -97,26 +119,27 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
             Dictionary<int, (string, int)> chooseCustomerMenuOptions = Storage.Storage.customersDict;
 
-            string customerName = MenuClass.MenuItems(chooseCustomerMenuOptions, log, 1);
-            Customer foundCustomer = Storage.Storage.customers.FirstOrDefault(c => c.GetName() == customerName);
+            int? customerTelNum = MenuClass.MenuItems(chooseCustomerMenuOptions, log, 1, "Tlf nr.");
+            Customer foundCustomer = Storage.Storage.customers.FirstOrDefault(c => c.GetTelephoneNum() == customerTelNum);
             int counter = 1;
 
-            Dictionary<int, string> removeReservationMenuOptions = new();
+            Dictionary<int, (string, int)> removeReservationMenuOptions = new();
 
             foreach (Reservation reservation in foundCustomer.GetReservations())
             {
-                removeReservationMenuOptions.Add(counter, reservation.GetBoardgames());
+                removeReservationMenuOptions.Add(counter, 
+                    (string.Join(" | ", reservation.GetBoardgames().Select(b => b.Name)), reservation.GetId()));
                 counter++;
             }
 
-            string name = MenuClass.MenuItems(removeBoardgameVariantMenuOptions, log, 1);
+            int? reservationId = MenuClass.MenuItems(removeReservationMenuOptions, log, 1, "Id");
 
-            BoardgameVariant boardgameVariantToBeRemoved = foundGame.BoardgameVariant.Find(b => b.Name == name);
+            Reservation reservertionToBeRemoved = foundCustomer.GetReservations().Find(r => r.GetId() == reservationId);
 
-            foundGame.RemoveBoardgameVariants(boardgameVariantToBeRemoved);
+            foundCustomer.RemoveReservation(reservertionToBeRemoved);
 
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
-            */
+
         }
 
     }

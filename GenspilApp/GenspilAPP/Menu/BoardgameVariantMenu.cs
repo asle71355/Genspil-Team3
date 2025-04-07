@@ -35,16 +35,19 @@ Vælg Brætspil: ");
 
             MenuClass.Log(log, "Indtast pris: ");
             double.TryParse(Console.ReadLine(), out double price);
-            MenuClass.Log(log, price.ToString());
+            MenuClass.Log(log, price.ToString(), false);
 
             MenuClass.Log(log, "Indtast Sprog: ");
             string language = Console.ReadLine();
             MenuClass.Log(log, language, false);
 
+            MenuClass.Log(log, "Vælg tilstand: ");
             //Hvordan man får Enum fra string værdi, fandt svar her https://stackoverflow.com/questions/23563960/how-to-get-enum-value-by-string-or-int
-            Status status = (Status)Enum.Parse(typeof(Status), MenuClass.MenuItems(Storage.Storage.StatusDict, log, 1));
-
             State state = (State)Enum.Parse(typeof(State), MenuClass.MenuItems(Storage.Storage.StateDict, log, 1));
+            MenuClass.Log(log, state.ToString());
+
+            Console.WriteLine("Vælg status: ");
+            Status status = (Status)Enum.Parse(typeof(Status), MenuClass.MenuItems(Storage.Storage.StatusDict, log, 1));
 
             Boardgame foundGame = Storage.Storage.boardgames.FirstOrDefault(bg => bg.Name == boardgame);
 

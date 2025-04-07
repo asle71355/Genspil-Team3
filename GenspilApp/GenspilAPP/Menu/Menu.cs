@@ -110,7 +110,7 @@ Vælg et menupunkt.");
 
         }
 
-        public static string MenuItems(Dictionary<int, (string, int)> menuItemsOptions, StringBuilder log, int selectedOption)
+        public static int? MenuItems(Dictionary<int, (string, int)> menuItemsOptions, StringBuilder log, int selectedOption, string idName)
         {
             //Eksevere display menu funktion med menuOptions som parameter
             Console.Clear();
@@ -118,7 +118,7 @@ Vælg et menupunkt.");
 
             foreach (var item in menuItemsOptions)
             {
-                Console.WriteLine($"[{(selectedOption == item.Key ? ">" : " ")}] {item.Value.Item1}, Tlfnr.: {item.Value.Item2}");
+                Console.WriteLine($"[{(selectedOption == item.Key ? ">" : " ")}] {item.Value.Item1}, {idName}: {item.Value.Item2}");
             }
 
             //Opretter et ConsoleKey objekt med navn pressedKey
@@ -133,13 +133,13 @@ Vælg et menupunkt.");
 
             if (pressedKey.Key == ConsoleKey.DownArrow && selectedOption < menuItemsOptions.Count)
             {
-                return MenuItems(menuItemsOptions, log, ++selectedOption);
+                return MenuItems(menuItemsOptions, log, ++selectedOption, idName);
 
             }
 
             if (pressedKey.Key == ConsoleKey.UpArrow && selectedOption > 1)
             {
-                return MenuItems(menuItemsOptions, log, --selectedOption);
+                return MenuItems(menuItemsOptions, log, --selectedOption, idName);
             }
 
             if (pressedKey.Key == ConsoleKey.Backspace)
@@ -150,10 +150,10 @@ Vælg et menupunkt.");
 
             if (pressedKey.Key == ConsoleKey.Enter)
             {
-                return menuItemsOptions[selectedOption].Item1;
+                return menuItemsOptions[selectedOption].Item2;
             }
 
-            return MenuItems(menuItemsOptions, log, selectedOption);
+            return MenuItems(menuItemsOptions, log, selectedOption, idName);
 
         }
 
