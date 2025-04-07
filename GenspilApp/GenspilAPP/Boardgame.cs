@@ -71,7 +71,7 @@ namespace GenspilApp
             {
                 if (value == null || value.Count == 0)
                 {
-                    throw new ArgumentException("Spillet skal have mindst en genre..");
+                    throw new ArgumentException("Spillet skal have mindst én genre..");
                 }
                 _genre = value;
             }
@@ -122,7 +122,7 @@ namespace GenspilApp
             }
             catch (Exception ex)
             {
-                throw new Exception("Fandt ikke filen");
+                throw new Exception("Filen kunne ikke findes..");
             }
             return null;
         }
