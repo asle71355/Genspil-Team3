@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Channels;
+using System.Xml.Linq;
 
 namespace GenspilApp
 {
@@ -76,6 +77,7 @@ namespace GenspilApp
         public void AddReservation(Reservation reservation)
         {
             reservations.Add(reservation);
+            File.AppendAllText($"{telephoneNum}.txt", string.Join(";", reservations.Select(r => $"{r.GetComment()};{string.Join(",", r.GetBoardgames().Select(b => b.Name))}")) + "\n");
         }
         public void RemoveReservation(Reservation reservation)
         {
