@@ -18,7 +18,10 @@ namespace GenspilApp
     }
     public class BoardgameVariant
     {
+        private static int nextId = 1;
+
         private string _name;
+        private int _id;
         private double _price;
         private string _language;
         private State _state;
@@ -27,6 +30,7 @@ namespace GenspilApp
         public BoardgameVariant(string name, double price, string language, State state, Status status)
         {
             this._name = name;
+            this._id = nextId++;
             this._price = price;
             this._language = language;
             this._state = state;
@@ -37,6 +41,12 @@ namespace GenspilApp
         {
            get { return _name;  }
            set { _name = value; }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
         public double Price
