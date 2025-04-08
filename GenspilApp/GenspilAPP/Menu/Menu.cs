@@ -12,11 +12,14 @@ namespace GenspilApp.Menu
 
         public static void Menu(Dictionary<int, (Action, string)> menuOptions, string title, int selectedOption)
         {
+            //Sletter alt tekst
             Console.Clear();
 
+            //Udskriver menu tekst
             Console.WriteLine(MenuTitleWithControlsAndArrows(title));
             Console.WriteLine("Vælg et menupunkt.");
 
+            //Skaber menu fra dictionary menuOptions
             foreach (var item in menuOptions)
             {
                 Console.WriteLine($"[{(selectedOption == item.Key ? ">" : " ")}] {item.Value.Item2}");
@@ -27,30 +30,36 @@ namespace GenspilApp.Menu
 
             do
             {
+                //Læser bruger input
                 pressedKey = Console.ReadKey();
 
                 if (pressedKey.Key == ConsoleKey.Escape)
                 {
+                    //Quiter console
                     Environment.Exit(0);
                 }
 
                 if (pressedKey.Key == ConsoleKey.DownArrow && selectedOption < menuOptions.Count)
                 {
+                    //Kører menu funktionen men hvor selectedOption er en mere
                     Menu(menuOptions, title, ++selectedOption);
                 }
 
                 if (pressedKey.Key == ConsoleKey.UpArrow && selectedOption > 1)
                 {
+                    //Kører menu funktionen men hvor selectedOption er en mindre
                     Menu(menuOptions, title, --selectedOption);
                 }
 
                 if (pressedKey.Key == ConsoleKey.Backspace)
                 {
+                    //Kører menu funktion med mainMenu dictionary
                     MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
                 }
 
                 if (pressedKey.Key == ConsoleKey.Enter)
                 {
+                    //Hvis der bliver trykket enter invokes Action fra menuOptions dictionary
                     menuOptions[selectedOption].Item1.Invoke();
                 }
 
