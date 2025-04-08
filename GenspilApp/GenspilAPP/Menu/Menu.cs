@@ -158,7 +158,7 @@ namespace GenspilApp.Menu
             //Eksevere display menu funktion med menuOptions som parameter
             Console.WriteLine(log);
             Console.WriteLine($@"Vælg {title}
-Brug piletasterne og Tab til at vælge en {title}.
+Brug piletasterne og Tab for at vælge.
 Brug Esc til at lukke programmet.
 Brug Backspace til at gå tilbage til hovedmenuen uden at gemme.");
 

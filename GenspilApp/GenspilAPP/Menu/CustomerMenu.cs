@@ -39,7 +39,7 @@ namespace GenspilApp.Menu
             Customer.AddCustomerToFile(new Customer(name, telNum, adress));
             Storage.Storage.LoadCustomerFile();
 
-            log.Length = 0;
+            log.Clear();
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }
@@ -50,12 +50,20 @@ namespace GenspilApp.Menu
 
             Console.WriteLine(MenuClass.MenuTitleWithControls("Kunder sorteret efter navn"));
 
-            var sortedCustomer = Storage.Storage.customers.OrderBy(b => b.GetName());
-
-            foreach (Customer customer in sortedCustomer)
+            if (Storage.Storage.customers != null && Storage.Storage.customers.Count != 0)
             {
-                Console.WriteLine($"Navn: {customer.GetName()}; Telefonnr.: {customer.GetTelephoneNum()}; Adresse:{customer.GetAddress()}");
+                var sortedCustomer = Storage.Storage.customers.OrderBy(b => b.GetName());
+
+                foreach (Customer customer in sortedCustomer)
+                {
+                    Console.WriteLine($"Navn: {customer.GetName()}; Telefonnr.: {customer.GetTelephoneNum()}; Adresse:{customer.GetAddress()}");
+                }
             }
+            else
+            {
+                Console.WriteLine("Listen er tom.");
+            }
+
 
         }
 
@@ -79,7 +87,7 @@ namespace GenspilApp.Menu
             if (File.Exists($"{customerTelNum}.txt"))
                 File.Delete($"{customerTelNum}.txt");
 
-            log.Length = 0;
+            log.Clear();
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }

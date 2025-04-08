@@ -54,7 +54,7 @@ namespace GenspilApp.Menu
 
             foundGame.AddBoardgameVariants(new BoardgameVariant(boardgame, price, language, state, status));
 
-            log.Length = 0;
+            log.Clear();
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
             }
 
@@ -88,7 +88,7 @@ namespace GenspilApp.Menu
                 Console.WriteLine("Listen er tom.");
             }
 
-            log.Length = 0;
+            log.Clear();
 
         }
 
@@ -121,7 +121,7 @@ namespace GenspilApp.Menu
 
             foundGame.RemoveBoardgameVariants(boardgameVariantToBeRemoved);
 
-            log.Length = 0;
+            log.Clear();
 
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 

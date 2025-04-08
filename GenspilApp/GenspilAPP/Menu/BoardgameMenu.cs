@@ -14,8 +14,9 @@ namespace GenspilApp.Menu
         public static Dictionary<int, (Action, string)> menuOptions = new()
             {
                 {1, (BoardgameSortedByName, "Se brætspil sorteret efter navn") },
-                {2, (AddBoardgame, "Opret nyt brætspil") },
-                {3, (RemoveBoardgame, "Slet brætspil") }
+                {2, (BoardgameSortedByGenre, "Se brætspil efter genre") },
+                {3, (AddBoardgame, "Opret nyt brætspil") },
+                {4, (RemoveBoardgame, "Slet brætspil") }
             };
 
         public static void AddBoardgame()
@@ -67,7 +68,7 @@ namespace GenspilApp.Menu
             //Opdatere min liste af boardgames fra fil, så listen er opdateret med den nyeste boardgame
             Storage.Storage.LoadBoardgameFile();
 
-            log.Length = 0;
+            log.Clear();
 
 
             //Går tilbage til main menuen
@@ -80,7 +81,7 @@ namespace GenspilApp.Menu
 
             Console.WriteLine(MenuClass.MenuTitleWithControls("Brætspil sorteret efter navn"));
 
-            if (Storage.Storage.boardgames.Count != 0)
+            if  (Storage.Storage.boardgames != null && Storage.Storage.boardgames.Count != 0)
             {
                 var SortedBoardgame = Storage.Storage.boardgames.OrderBy(b => b.Name);
 
@@ -98,6 +99,52 @@ Genrer: {string.Join(", ", boardgame.Genre)}");
                 Console.WriteLine("Listen er tom.");
             }
 
+        }
+
+        public static void BoardgameSortedByGenre()
+        {
+            Console.Clear();
+
+            StringBuilder log = new();
+
+            MenuClass.Log(MenuClass.MenuTitleWithControls($"Brætspil efter genre"), log);
+
+            Dictionary<int, string> SeeBoardgameGenreMenuOptions = Storage.Storage.GenreDict;
+
+            string chosenGenreName = MenuClass.MenuItems(SeeBoardgameGenreMenuOptions, log, 1);
+
+            Genre? foundGenre = null;
+
+            foreach (Genre genre in (Genre[])Enum.GetValues(typeof(Genre)))
+            {
+                if (genre.ToString() == chosenGenreName)
+                    foundGenre = genre;
+            }
+
+            if (Storage.Storage.boardgames != null && Storage.Storage.boardgames.Where(b => b.Genre.Contains((Genre)foundGenre)).Count() != 0)
+            {
+
+                var boardgameWithGenre = Storage.Storage.boardgames.Where(b => b.Genre.Contains((Genre)foundGenre));
+                Console.Clear();
+
+                MenuClass.Log(MenuClass.MenuTitleWithControls($"Brætspil efter genre {foundGenre}"), log);
+
+                foreach (Boardgame boardgame in boardgameWithGenre)
+                {
+                    Console.WriteLine(@$"-------------
+Title: {boardgame.Name}
+Antal spillere: {boardgame.Players}
+Genrer: {string.Join(", ", boardgame.Genre)}");
+                }
+                log.Clear();
+            }
+            else
+            {
+                Console.WriteLine("Listen er tom.");
+                log.Clear();
+            }
+
+            log.Clear();
         }
 
         public static void RemoveBoardgame()
@@ -119,7 +166,7 @@ Genrer: {string.Join(", ", boardgame.Genre)}");
             if(File.Exists($"{boardgameName}.txt"))
                 File.Delete($"{boardgameName}.txt");
 
-            log.Length = 0;
+            log.Clear();
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }

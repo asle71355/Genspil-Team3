@@ -58,7 +58,7 @@ namespace GenspilApp.Menu
 
             foundCustomer.AddReservation(new Reservation(comment, foundGames));
 
-            log.Length = 0;
+            log.Clear();
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
         }
 
@@ -102,7 +102,7 @@ Kommentar: {reservation.GetComment()};");
                 Console.WriteLine("Listen er tom.");
             }
 
-            log.Length = 0;
+            log.Clear();
         }
 
         public static void RemoveReservation()
@@ -136,7 +136,7 @@ Kommentar: {reservation.GetComment()};");
 
             foundCustomer.RemoveReservation(reservertionToBeRemoved);
 
-            log.Length = 0;
+            log.Clear();
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }
