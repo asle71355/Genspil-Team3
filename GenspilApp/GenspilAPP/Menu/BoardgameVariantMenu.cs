@@ -81,7 +81,7 @@ namespace GenspilApp.Menu
 
                 foreach (BoardgameVariant boardgameVariant in SortedBoardgameVariant)
                 {
-                    Console.WriteLine($"Pris: {boardgameVariant.Price}; Sprog: {boardgameVariant.Language}; Stand: {boardgameVariant.State}; Status: {boardgameVariant.Status};");
+                    Console.WriteLine($"Pris: {boardgameVariant.Price}; Sprog: {boardgameVariant.Language}; Status: {boardgameVariant.State}; Tilstand: {boardgameVariant.Status};");
                 }
             } else
             {
