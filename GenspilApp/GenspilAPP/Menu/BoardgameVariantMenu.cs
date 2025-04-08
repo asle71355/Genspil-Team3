@@ -21,30 +21,31 @@ namespace GenspilApp.Menu
 
             StringBuilder log = new();
             Console.Clear();
-            MenuClass.Log(log, @"---Genspil----
-Opret nyt brætspil variant
-Vælg Brætspil: ");
+
+            MenuClass.Log(MenuClass.MenuTitle("Opret nyt brætspil variant"), log);
+
+            MenuClass.Log("Vælg Brætspil: ", log);
 
             Dictionary<int, string> AddBoardgameVariantMenuOptions = Storage.Storage.boardgamesDict;
 
             string boardgame = MenuClass.MenuItems(AddBoardgameVariantMenuOptions, log, 1);
-            MenuClass.Log(log, boardgame, false);
+            MenuClass.Log(boardgame, log, false);
 
             Console.Clear();
             Console.WriteLine(log);
 
-            MenuClass.Log(log, "Indtast pris: ");
+            MenuClass.Log("Indtast pris: ", log);
             double.TryParse(Console.ReadLine(), out double price);
-            MenuClass.Log(log, price.ToString(), false);
+            MenuClass.Log(price.ToString(), log, false);
 
-            MenuClass.Log(log, "Indtast Sprog: ");
+            MenuClass.Log("Indtast Sprog: ", log);
             string language = Console.ReadLine();
-            MenuClass.Log(log, language, false);
+            MenuClass.Log(language, log, false);
 
-            MenuClass.Log(log, "Vælg tilstand: ");
+            MenuClass.Log("Vælg tilstand: ", log);
             //Hvordan man får Enum fra string værdi, fandt svar her https://stackoverflow.com/questions/23563960/how-to-get-enum-value-by-string-or-int
             State state = (State)Enum.Parse(typeof(State), MenuClass.MenuItems(Storage.Storage.StateDict, log, 1));
-            MenuClass.Log(log, state.ToString());
+            MenuClass.Log(state.ToString(), log);
 
             Console.WriteLine("Vælg status: ");
             Status status = (Status)Enum.Parse(typeof(Status), MenuClass.MenuItems(Storage.Storage.StatusDict, log, 1));
@@ -53,6 +54,7 @@ Vælg Brætspil: ");
 
             foundGame.AddBoardgameVariants(new BoardgameVariant(boardgame, price, language, state, status));
 
+            log.Length = 0;
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
             }
 
@@ -62,37 +64,32 @@ Vælg Brætspil: ");
 
             StringBuilder log = new();
 
-            MenuClass.Log(log, $@"---Genspil---
-Brætspil variant sorteret efter navn
-
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-
-            ");
+            MenuClass.Log(MenuClass.MenuTitleWithControls($"Brætspil variant sorteret efter navn"), log);
 
             Dictionary<int, string> SeeBoardgameVariantMenuOptions = Storage.Storage.boardgamesDict;
 
             string boardgame = MenuClass.MenuItems(SeeBoardgameVariantMenuOptions, log, 1);
             Boardgame foundGame = Storage.Storage.boardgames.FirstOrDefault(bg => bg.Name == boardgame);
 
-            var SortedBoardgameVariant = foundGame.BoardgameVariant.OrderBy(b => b.Name);
-
-            Console.Clear();
-
-            MenuClass.Log(log, $@"---Genspil---
-Brætspil variant sorteret efter navn for spillet {foundGame.Name}
-
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-
-            ");
-
-            foreach (BoardgameVariant boardgameVariant in SortedBoardgameVariant)
+            if(foundGame.BoardgameVariant.Count != 0)
             {
-                Console.WriteLine($"Pris: {boardgameVariant.Price}; Sprog: {boardgameVariant.Language}; Stand: {boardgameVariant.State}; Status: {boardgameVariant.Status};");
+                var SortedBoardgameVariant = foundGame.BoardgameVariant.OrderBy(b => b.Name);
+
+                Console.Clear();
+
+                MenuClass.Log(MenuClass.MenuTitleWithControls($"Brætspil variant sorteret efter navn for spillet {foundGame.Name}"), log);
+
+                foreach (BoardgameVariant boardgameVariant in SortedBoardgameVariant)
+                {
+                    Console.WriteLine($"Pris: {boardgameVariant.Price}; Sprog: {boardgameVariant.Language}; Stand: {boardgameVariant.State}; Status: {boardgameVariant.Status};");
+                }
+            } else
+            {
+                Console.WriteLine("Listen er tom.");
             }
+
+            log.Length = 0;
+
         }
 
         public static void RemoveBoardgameVariant()
@@ -101,14 +98,8 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
             StringBuilder log = new();
 
-            MenuClass.Log(log, $@"---Genspil---
-Slet brætspils variant
+            MenuClass.Log(MenuClass.MenuTitleWithControls("Slet brætspils variant"), log);
 
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-
-            ");
 
             Dictionary<int, string> chooseBoardgameMenuOptions = Storage.Storage.boardgamesDict;
 
@@ -116,19 +107,21 @@ Brug Backspace til at gå tilbage til hovedmenuen.
             Boardgame foundGame = Storage.Storage.boardgames.FirstOrDefault(bg => bg.Name == boardgame);
             int counter = 1;
 
-            Dictionary<int, string> removeBoardgameVariantMenuOptions = new();
+            Dictionary<int, (string, int)> removeBoardgameVariantMenuOptions = new();
 
             foreach (BoardgameVariant game in foundGame.BoardgameVariant)
             {
-                removeBoardgameVariantMenuOptions.Add(counter, game.Name);
+                removeBoardgameVariantMenuOptions.Add(counter, ($"Sprog: {game.Language}, Pris: {game.Price}", game.Id));
                 counter++;
             }
 
-            string name = MenuClass.MenuItems(removeBoardgameVariantMenuOptions, log, 1);
+            int? BoardgameVariantId = MenuClass.MenuItems(removeBoardgameVariantMenuOptions, log, 1, "Id");
 
-            BoardgameVariant boardgameVariantToBeRemoved = foundGame.BoardgameVariant.Find(b => b.Name == name);
+            BoardgameVariant boardgameVariantToBeRemoved = foundGame.BoardgameVariant.Find(b => b.Id == BoardgameVariantId);
 
             foundGame.RemoveBoardgameVariants(boardgameVariantToBeRemoved);
+
+            log.Length = 0;
 
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 

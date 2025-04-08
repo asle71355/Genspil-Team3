@@ -14,13 +14,8 @@ namespace GenspilApp.Menu
         {
             Console.Clear();
 
-            Console.WriteLine($@"---Genspil---
-{title}
-Brug piletasterne og Enter til at vælge et menupunkt.
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-Vælg et menupunkt.");
+            Console.WriteLine(MenuTitleWithControlsAndArrows(title));
+            Console.WriteLine("Vælg et menupunkt.");
 
             foreach (var item in menuOptions)
             {
@@ -175,53 +170,87 @@ Brug Backspace til at gå tilbage til hovedmenuen uden at gemme.");
             //Opretter et ConsoleKey objekt med navn pressedKey
             ConsoleKeyInfo pressedKey;
 
-                pressedKey = Console.ReadKey();
+            pressedKey = Console.ReadKey();
 
-                if (pressedKey.Key == ConsoleKey.Escape)
-                {
-                    Environment.Exit(0);
-                }
+            if (pressedKey.Key == ConsoleKey.Escape)
+            {
+                Environment.Exit(0);
+            }
 
-                if (pressedKey.Key == ConsoleKey.DownArrow && selectedOption < menuItemsOptions.Count)
-                {
-                    return MenuMultipleItems(menuItemsOptions, list, title, log, ++selectedOption);
+            if (pressedKey.Key == ConsoleKey.DownArrow && selectedOption < menuItemsOptions.Count)
+            {
+                return MenuMultipleItems(menuItemsOptions, list, title, log, ++selectedOption);
+            }
 
-                }
+            if (pressedKey.Key == ConsoleKey.UpArrow && selectedOption > 1)
+            {
+                return MenuMultipleItems(menuItemsOptions, list, title, log, --selectedOption);
+            }
 
-                if (pressedKey.Key == ConsoleKey.UpArrow && selectedOption > 1)
-                {
-                    return MenuMultipleItems(menuItemsOptions, list, title, log, --selectedOption);
-                }
+            if (pressedKey.Key == ConsoleKey.Backspace)
+            {
+                MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
+                return null;
+            }
 
-                if (pressedKey.Key == ConsoleKey.Backspace)
-                {
-                    MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
-                    return null;
-                }
+            if (pressedKey.Key == ConsoleKey.Enter)
+            {
+                return list;
+            }
 
-                if (pressedKey.Key == ConsoleKey.Enter)
-                {
-                    return list;
-                }
-
-                if (pressedKey.Key == ConsoleKey.Tab)
-                {
-                    list.Add(menuItemsOptions[selectedOption]);
-                    return MenuMultipleItems(menuItemsOptions, list, title, log, selectedOption);
-                }
+            if (pressedKey.Key == ConsoleKey.Tab)
+            {
+                list.Add(menuItemsOptions[selectedOption]);
+                return MenuMultipleItems(menuItemsOptions, list, title, log, selectedOption);
+            }
 
             return MenuMultipleItems(menuItemsOptions, list, title, log, selectedOption);
 
         }
 
         //Fandt løsning her https://stackoverflow.com/questions/68504575/c-sharp-is-there-way-to-copy-console-content-and-save-to-file-at-the-end-of-co
-        public static StringBuilder Log(StringBuilder log, string msg, bool toggleLog = true)
+        public static StringBuilder Log(string msg, StringBuilder log, bool toggleLog = true)
         {
             if (toggleLog)
                 Console.WriteLine(msg);
             return log.AppendLine(msg);
         }
 
+        public static string MenuTitle(string title)
+        {
+            return $@"---Genspil---
+{title}
+
+
+
+
+
+            ";
+        }
+
+        public static string MenuTitleWithControls(string title)
+        {
+            return $@"---Genspil---
+{title}
+
+Brug Esc til at lukke programmet.
+Brug Backspace til at gå tilbage til hovedmenuen.
+
+
+            ";
+        }
+
+        public static string MenuTitleWithControlsAndArrows(string title)
+        {
+            return $@"---Genspil---
+{title}
+Brug piletasterne og Enter til at vælge et menupunkt.
+Brug Esc til at lukke programmet.
+Brug Backspace til at gå tilbage til hovedmenuen.
+
+
+            ";
+        }
+
     }
-    
-    }
+}

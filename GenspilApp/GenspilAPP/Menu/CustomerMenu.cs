@@ -20,22 +20,26 @@ namespace GenspilApp.Menu
 
             StringBuilder log = new();
             Console.Clear();
-            MenuClass.Log(log, @"---Genspil----
-Opret ny kunde
-Kundens navn: ");
+
+            MenuClass.Log(MenuClass.MenuTitle("Opret ny kunde"), log);
+
+            MenuClass.Log("Kundens navn:", log);
+
             string name = Console.ReadLine();
-            MenuClass.Log(log, name, false);
+            MenuClass.Log(name, log, false);
 
-            MenuClass.Log(log, "Kundens telefon nummer: ");
+            MenuClass.Log("Kundens telefon nummer: ", log);
             int telNum = Convert.ToInt32(Console.ReadLine());
-            MenuClass.Log(log, telNum.ToString(), false);
+            MenuClass.Log(telNum.ToString(), log, false);
 
-            MenuClass.Log(log, "Kundens adresse: ");
+            MenuClass.Log("Kundens adresse: ", log);
             string adress = Console.ReadLine();
-            MenuClass.Log(log, adress, false);
+            MenuClass.Log(adress, log, false);
 
             Customer.AddCustomerToFile(new Customer(name, telNum, adress));
             Storage.Storage.LoadCustomerFile();
+
+            log.Length = 0;
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }
@@ -44,14 +48,7 @@ Kundens navn: ");
         {
             Console.Clear();
 
-            Console.WriteLine($@"---Genspil---
-Kunder sorteret efter navn
-
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-
-            ");
+            Console.WriteLine(MenuClass.MenuTitleWithControls("Kunder sorteret efter navn"));
 
             var sortedCustomer = Storage.Storage.customers.OrderBy(b => b.GetName());
 
@@ -59,6 +56,7 @@ Brug Backspace til at gå tilbage til hovedmenuen.
             {
                 Console.WriteLine($"Navn: {customer.GetName()}; Telefonnr.: {customer.GetTelephoneNum()}; Adresse:{customer.GetAddress()}");
             }
+
         }
 
         public static void RemoveCustomer()
@@ -68,14 +66,9 @@ Brug Backspace til at gå tilbage til hovedmenuen.
             int counter = 1;
 
             Console.Clear();
-            MenuClass.Log(log, $@"---Genspil---
-Slet kunde
-Brug piletasterne og Enter til at vælge et menupunkt.
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
 
-Vælg en kunde der skal slettes.
-");
+            MenuClass.Log(MenuClass.MenuTitleWithControlsAndArrows("Slet kunde"), log);
+            MenuClass.Log("Vælg en kunde der skal slettes.", log);
 
             int? customerTelNum = MenuClass.MenuItems(removeCustomerMenuOptions, log, 1, "Tlf nr.");
 
@@ -83,6 +76,10 @@ Vælg en kunde der skal slettes.
 
             Storage.Storage.RemoveCustomer(customerToBeRemoved);
 
+            if (File.Exists($"{customerTelNum}.txt"))
+                File.Delete($"{customerTelNum}.txt");
+
+            log.Length = 0;
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }

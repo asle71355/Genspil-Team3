@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
@@ -24,16 +25,15 @@ namespace GenspilApp.Menu
             //Jeg fjerner alt tekst
             Console.Clear();
             //Skriver ny menu + tilføjer til log variable
-            MenuClass.Log(log, @"---Genspil----
-Opret nyt brætspil
-Title på brætspil: ");
+            MenuClass.Log(MenuClass.MenuTitle("Opret nyt brætspil"), log);
+            MenuClass.Log("Title på brætspil", log);
             string name = Console.ReadLine();
             //Tilføjer brugerinput til log + sat til false, så den ikke laver "ekko"
-            MenuClass.Log(log, name, false);
+            MenuClass.Log(name, log, false);
 
-            MenuClass.Log(log, "Antal spillere: ");
+            MenuClass.Log("Antal spillere: ", log);
             string players = Console.ReadLine();
-            MenuClass.Log(log, players, false);
+            MenuClass.Log(players, log, false);
 
             //Ny dictionary til Genre med unik "id"
             Dictionary<int, string> AddGenreMenuOptions = new();
@@ -67,6 +67,9 @@ Title på brætspil: ");
             //Opdatere min liste af boardgames fra fil, så listen er opdateret med den nyeste boardgame
             Storage.Storage.LoadBoardgameFile();
 
+            log.Length = 0;
+
+
             //Går tilbage til main menuen
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
         }
@@ -75,14 +78,7 @@ Title på brætspil: ");
         {
             Console.Clear();
 
-            Console.WriteLine($@"---Genspil---
-Brætspil sorteret efter navn
-
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
-
-
-            ");
+            Console.WriteLine(MenuClass.MenuTitleWithControls("Brætspil sorteret efter navn"));
 
             if (Storage.Storage.boardgames.Count != 0)
             {
@@ -90,7 +86,10 @@ Brug Backspace til at gå tilbage til hovedmenuen.
 
                 foreach (Boardgame boardgame in SortedBoardgame)
                 {
-                    Console.WriteLine($"Title: {boardgame.Name}; Antal spillere: {boardgame.Players}; Genrer: {string.Join(", ", boardgame.Genre)}");
+                    Console.WriteLine(@$"-------------
+Title: {boardgame.Name}
+Antal spillere: {boardgame.Players}
+Genrer: {string.Join(", ", boardgame.Genre)}");
                 }
             }
 
@@ -108,21 +107,19 @@ Brug Backspace til at gå tilbage til hovedmenuen.
             int counter = 1;
 
             Console.Clear();
-            MenuClass.Log(log, $@"---Genspil---
-Slet brætspil
-Brug piletasterne og Enter til at vælge et menupunkt.
-Brug Esc til at lukke programmet.
-Brug Backspace til at gå tilbage til hovedmenuen.
+            MenuClass.Log(MenuClass.MenuTitleWithControlsAndArrows("Slet brætspil"), log);
+            MenuClass.Log("Vælg et brætspil der skal sletters.", log);
 
-Vælg et brætspil der skal sletters.
-");
+            string boardgameName = MenuClass.MenuItems(removeBoardgameMenuOptions, log, 1);
 
-            string name = MenuClass.MenuItems(removeBoardgameMenuOptions, log, 1);
-
-            Boardgame boardgameToBeRemoved = Storage.Storage.boardgames.Find(b => b.Name == name);
+            Boardgame boardgameToBeRemoved = Storage.Storage.boardgames.Find(b => b.Name == boardgameName);
 
             Storage.Storage.Removeboardgame(boardgameToBeRemoved);
 
+            if(File.Exists($"{boardgameName}.txt"))
+                File.Delete($"{boardgameName}.txt");
+
+            log.Length = 0;
             MenuClass.Menu(MainMenu.menuOptions, "Menu", 1);
 
         }
