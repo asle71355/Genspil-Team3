@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 namespace GenspilApp.Menu
 {
 
-    //public static void Menu(Dictionary<int, (Action, string)> menuOptions, int selectedOption)
-    //{1, (() => BoardgameSortedByName(), "Se brætspil sorteret efter navn") }
     public class MainMenu
     {
         public static Dictionary<int, (Action, string)> menuOptions = new ()
